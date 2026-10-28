@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "图推结构化思考训练器",
+  "version": "1.0.0",
+  "description": "用观察证据与排除队列训练图形推理思路。",
+  "permissions": ["sidePanel", "storage"],
+  "action": {
+    "default_title": "打开图推训练器"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  }
+}

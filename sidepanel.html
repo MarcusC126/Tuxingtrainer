@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>图推训练器</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="app-header">
+        <div>
+          <div class="eyebrow">STRUCTURED REASONING / V1</div>
+          <h1>图推训练器</h1>
+        </div>
+        <div class="header-actions">
+          <label class="format-control" title="选择题目格式">
+            <span>题型</span>
+            <select id="formatSelect"></select>
+          </label>
+          <button class="icon-button" id="resetButton" title="新建一题" aria-label="新建一题">↻</button>
+        </div>
+      </header>
+
+      <div class="context-row">
+        <div class="context-label">当前专题</div>
+        <div id="playbookChips" class="chips"></div>
+        <div id="selectionCount" class="selection-count">尚未记录观察</div>
+      </div>
+
+      <nav class="mobile-tabs" aria-label="面板切换">
+        <button class="active" data-tab="observations">我看到的</button>
+        <button data-tab="concepts">尝试与排除</button>
+      </nav>
+
+      <main class="workspace">
+        <section class="panel observations-panel" data-panel="observations">
+          <div class="panel-heading">
+            <div>
+              <div class="panel-kicker">LEFT / OBSERVE</div>
+              <h2>我观察到什么</h2>
+            </div>
+            <span class="panel-count" id="observationCount">0</span>
+          </div>
+          <div id="reverseHint" class="reverse-hint hidden"></div>
+          <div id="observationGroups" class="accordion-list"></div>
+        </section>
+
+        <section class="panel concepts-panel" data-panel="concepts">
+          <div class="panel-heading">
+            <div>
+              <div class="panel-kicker">RIGHT / ELIMINATE</div>
+              <h2>尝试与排除</h2>
+            </div>
+            <span class="panel-count" id="conceptCount">0</span>
+          </div>
+          <div class="legend" aria-label="考点状态">
+            <span><i class="state-dot untested"></i>未检</span>
+            <span><i class="state-dot retained"></i>暂留</span>
+            <span><i class="state-dot excluded"></i>排除</span>
+            <span><i class="state-dot confirmed"></i>确认</span>
+          </div>
+          <div id="conceptGroups" class="concept-groups"></div>
+          <div id="emptyConcepts" class="empty-state hidden">先在左侧记录一个可见特征。</div>
+        </section>
+      </main>
+
+      <footer class="bottom-area">
+        <div class="convergence">
+          <div class="convergence-label"><span class="pulse"></span>当前收敛</div>
+          <div id="convergenceItems" class="convergence-items"></div>
+        </div>
+        <button id="reviewButton" class="review-button">结束并复盘 <span>→</span></button>
+      </footer>
+
+      <section id="reviewPanel" class="review-panel hidden" aria-live="polite">
+        <div class="review-heading">
+          <div>
+            <div class="panel-kicker">SESSION REVIEW</div>
+            <h2>这次思考路径</h2>
+          </div>
+          <button id="closeReview" class="icon-button" title="关闭复盘" aria-label="关闭复盘">×</button>
+        </div>
+        <p class="review-note">请选择你最终确认的考点。这里只复盘观察与验证路径，不判断题目答案。</p>
+        <label class="final-select"><span>最终考点</span><select id="finalConceptSelect"></select></label>
+        <div id="reviewResult" class="review-result"></div>
+      </section>
+    </div>
+    <script src="knowledge.js?v=1.0.0"></script>
+    <script src="sidepanel.js?v=1.0.1"></script>
+  </body>
+</html>
